@@ -10,23 +10,16 @@ from sqlalchemy import (
     create_engine
 )
 from sqlalchemy.ext.declarative import declarative_base
-
-
-def get_postgres_uri():
-    host = os.environ.get("DB_HOST", "172.22.0.2")
-    port = 5432
-    password = os.environ.get("DB_PASS", "abc123")
-    user, db_name = "movies", "movies"
-    return f"postgresql://{user}:{password}@{host}:{port}/{db_name}"
-
+from connector import DatabaseConnector
 
 Base = declarative_base(
     metadata=MetaData(),
 )
 
+data_connector = DatabaseConnector()
 
 engine = create_engine(
-    get_postgres_uri(),
+    data_connector.get_postgres_uri(),
     isolation_level="REPEATABLE READ",
 )
 
