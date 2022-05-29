@@ -3,8 +3,8 @@ all: build
 build:
 	docker-compose build
 
-cli:
-	docker-compose -–env-file config/dev.env up
+run:
+	docker-compose -f docker-compose.yml --env-file config/dev.env up
 
 connect:
 	docker-compose exec app bash
