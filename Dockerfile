@@ -16,7 +16,7 @@ RUN apt-get update \
 # dev system utilities
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-	less htop inetutils-ping strace curl postgresql-client unzip
+	less htop inetutils-ping strace curl postgresql-client unzip gcc python3-dev linux-libc-dev libc6-dev
 
 COPY requirements.txt /tmp/
 RUN pip install -r /tmp/requirements.txt
