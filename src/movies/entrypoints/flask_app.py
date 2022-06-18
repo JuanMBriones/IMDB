@@ -35,6 +35,7 @@ def index():
 
 @app.route("/hello", methods=["GET"])
 def hello_world():
+    models.get_movie()
     return "Hello World!", 200
 
 
