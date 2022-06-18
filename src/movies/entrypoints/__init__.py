@@ -25,7 +25,6 @@ TODO
 from flask import Flask, request, render_template
 from movies import models
 
-
 def create_app():
     app = Flask(__name__)
     models.start_mappers()

@@ -1,5 +1,5 @@
 from flask import Blueprint, Flask, request, render_template
-from .flask_app import models
+from movies import models
 import csv, os
 #from . import db
 
