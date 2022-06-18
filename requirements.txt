@@ -8,6 +8,10 @@ bs4
 lxml
 bpython
 
+# auth
+flask-sqlalchemy 
+flask-login
+
 # tests
 pytest
 pytest-icdiff
