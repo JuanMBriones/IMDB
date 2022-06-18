@@ -11,7 +11,7 @@ class DatabaseConnector(metaclass=SingletonMeta):
     def __init__(self):
         pass 
 
-    def get_postgres_uri():
+    def get_postgres_uri(self):
         host = os.environ.get("DB_HOST", "172.22.0.2")
         port = 5432
         password = os.environ.get("DB_PASS", "abc123")
