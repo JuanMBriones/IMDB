@@ -8,7 +8,7 @@ main = Blueprint('main', __name__)
 
 @main.route("/", methods=["GET"])
 def index():
-    return render_template('index2.html')
+    return render_template('index.html')
 
 @main.route("/hello", methods=["GET"])
 def hello_world():
