@@ -26,6 +26,9 @@
                                 <a href="{{ url_for('main.profile') }}" class="navbar-item">
                                     Profile
                                 </a>
+                                <a href="{{ url_for('auth.recommendations') }}" class="navbar-item">
+                                    Recommendations
+                                </a>
                             {% endif %}
 
                             {% if not current_user.is_authenticated %}

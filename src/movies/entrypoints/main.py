@@ -20,28 +20,3 @@ def hello_world():
 def profile():
     return render_template('profile.html', name=current_user.name)
 
-@main.route("/recommendations", methods=["GET"])
-def recommendations():
-    CSV_PREFERENCE_KEY = 0
-    CSV_MOVIE_TITLE = 1
-
-    args = request.args
-    key = args.get('key', type=int)
-    rating = args.get('rating', default=True, type=lambda v: v.lower() == 'true')
-
-    movies = []
-
-    with open('./static/movie_results.csv') as csv_file:
-        reader = csv.reader(csv_file, delimiter=',')
-        next(reader, None)
-
-        movies = [
-            row[CSV_MOVIE_TITLE]
-            for row in reader
-            if int(row[CSV_PREFERENCE_KEY]) == key
-        ]
-
-        if not rating:
-            movies = movies[::-1]
-
-    return render_template('recommendations.html', key=key, movies=movies)

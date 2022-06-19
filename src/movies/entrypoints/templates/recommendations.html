@@ -1,10 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block head %}
 <title>Recommendations</title>
 {% endblock %}
 
-{% block body %}
+{% block content %}
+<br>
+<br>
 <h1>List of recommendations for key {{ key }}</h1>
 {% if movies|length < 1 %}
 <p>No recommendations for this key</p>
