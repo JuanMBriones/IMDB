@@ -30,8 +30,21 @@
                 </div>
             </div>
 
+            <div class="field">
+                <div class="control">
+                    <input class="single-checkbox" type="checkbox" name="Comedy" value="1">Comedy<br>
+                    <input class="single-checkbox" type="checkbox" name="Drama" value="2">Drama<br>
+                    <input class="single-checkbox" type="checkbox" name="Sci-Fi" value="3">Sci-Fi<br>
+                    <input class="single-checkbox" type="checkbox" name="Romantic" value="4">Romantic<br>
+                    <input class="single-checkbox" type="checkbox" name="Adventure" value="5">Adventure<br>
+                </div>
+            </div>
+
             <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
         </form>
     </div>
 </div>
+<script src="{{ url_for('static', filename='js/checkbox.js') }}">
+</script>
+
 {% endblock %}

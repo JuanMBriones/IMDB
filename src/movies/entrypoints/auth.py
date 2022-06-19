@@ -40,14 +40,32 @@ def signup_post():
     name = request.form.get('name')
     password = request.form.get('password')
     preference_key = 10 #request.form.get('preference_key')
+    preferences_fields = ["Comedy", "Drama", "Sci-Fi", "Romantic", "Adventure"]
+
+    # 3 nums -> π(index) mod 5 + 1
+    product_preferences = 1
+    num_preferences = 0
+    for preference in preferences_fields:
+        preference_value = request.form.get(preference)
+        if preference_value:
+            product_preferences *= int(preference_value)
+            num_preferences += 1
+    
+    product_preferences %= 5
+    product_preferences += 1
+    print(product_preferences)
+
 
     user = models.session.query(models.User).filter(models.User.email == email).first() # if this returns a user, then the email already exists in database
     if user: # if a user is found, we want to redirect back to signup page so user can try again
         flash('Email address already exists')
         return redirect(url_for('auth.signup'))
+    if num_preferences != 3:
+        flash('You have not selected 3 preferences')
+        return redirect(url_for('auth.signup'))
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = models.User(email=email, name=name, password=generate_password_hash(password, method='sha256'), preference_key=preference_key)
+    new_user = models.User(email=email, name=name, password=generate_password_hash(password, method='sha256'), preference_key=product_preferences)
 
     # add the new user to the database
     models.session.add(new_user)
