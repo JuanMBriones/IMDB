@@ -2,19 +2,36 @@
 
 {% block head %}
 <title>Recommendations</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}" />
 {% endblock %}
 
 {% block content %}
-<br>
-<br>
-<h1>List of recommendations for key {{ key }}</h1>
+
+<div class="table-title">
+    <h1>List of recommendations for key {{ key }}</h1>
+    
+</div>
+
 {% if movies|length < 1 %}
 <p>No recommendations for this key</p>
 {% else %}
-<ol>
-    {% for movie in movies %}
-    <li>{{ movie }}</li>
-    {% endfor %}
-</ol>
+
+    
+    <table class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left" style="color: white">Ranking</th>
+                <th class="text-left" style="color: white">Movie</th>
+            </tr>
+        </thead>
+        {% for movie in movies %}
+            <tbody class="table-hover">
+                <tr>
+                    <td class="text-left">{{loop.index}}</td>
+                    <td class="text-left">{{movie}}</td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
 {% endif %}
 {% endblock %}
