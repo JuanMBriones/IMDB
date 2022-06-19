@@ -1,6 +1,7 @@
 from flask import Blueprint, Flask, request, render_template
 from movies import models
 import csv, os
+from flask_login import login_required, current_user
 #from . import db
 
 main = Blueprint('main', __name__)
@@ -15,8 +16,9 @@ def hello_world():
     return "Hello World!", 200
 
 @main.route('/profile')
+@login_required
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html', name=current_user.name)
 
 @main.route("/recommendations", methods=["GET"])
 def recommendations():
