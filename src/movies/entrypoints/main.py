@@ -7,12 +7,16 @@ main = Blueprint('main', __name__)
 
 @main.route("/", methods=["GET"])
 def index():
-    return render_template('index.html')
+    return render_template('index2.html')
 
 @main.route("/hello", methods=["GET"])
 def hello_world():
     models.get_movie()
     return "Hello World!", 200
+
+@main.route('/profile')
+def profile():
+    return render_template('profile.html')
 
 @main.route("/recommendations", methods=["GET"])
 def recommendations():
