@@ -9,16 +9,12 @@ class SingletonMeta(type):
 
 class DatabaseConnector(metaclass=SingletonMeta):
     def __init__(self):
-        pass 
+        self.host = os.environ.get("DB_HOST", "172.22.0.2")
+        self.port = 5432
+        self.password = os.environ.get("DB_PASS", "abc123")
+        self.user, self.db_name = "movies", "movies"
 
     def get_postgres_uri(self):
-        host = os.environ.get("DB_HOST", "172.22.0.2")
-        port = 5432
-        password = os.environ.get("DB_PASS", "abc123")
-        user, db_name = "movies", "movies"
-
-        print(f"{host} {port} {password} {user} {db_name}")
-        print(f"postgresql://{user}:{password}@{host}:{port}/{db_name}")
-        return f"postgresql://{user}:{password}@{host}:{port}/{db_name}"
+        return f"postgresql://{self.user}:{self.password}@{self.host}:{self.port}/{self.db_name}"
 
 

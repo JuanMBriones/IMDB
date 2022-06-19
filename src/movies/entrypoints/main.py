@@ -10,13 +10,4 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
-@main.route("/hello", methods=["GET"])
-def hello_world():
-    models.get_movie()
-    return "Hello World!", 200
-
-@main.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html', name=current_user.name)
 

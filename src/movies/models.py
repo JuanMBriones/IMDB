@@ -16,17 +16,16 @@ from connector import DatabaseConnector
 from sqlalchemy.orm import sessionmaker
 from flask_login import UserMixin
 
+data_connector = DatabaseConnector()
+
 Base = declarative_base(
     metadata=MetaData(),
 )
-
-data_connector = DatabaseConnector()
-
-
 engine = create_engine(
     data_connector.get_postgres_uri(),
     isolation_level="REPEATABLE READ",
 )
+
 Session = sessionmaker(bind = engine)
 session = Session()
 
@@ -41,6 +40,7 @@ class Movie(Base):
     year = Column(Integer)
     create_time = Column(TIMESTAMP(timezone=True), index=True)
 
+
 class User(UserMixin, Base):
     __tablename__ = "users"
 
@@ -53,20 +53,3 @@ class User(UserMixin, Base):
 
 def start_mappers():
     Base.metadata.create_all(engine)
-
-
-class Customers(Base):
-   __tablename__ = 'customers'
-   id = Column(Integer, primary_key =  True)
-   name = Column(String)
-
-   address = Column(String)
-   email = Column(String)
-
-
-def get_movie():
-    result = session.query(Movie).all()
-
-    for row in result:
-        print(f"{row.movie_title} {row.rating}")
-
